@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     var totalTime = 0
     var timePassed = 0
     var hardness = 0
-    let timeToBoil = ["반숙":2, "반+완숙":3, "완숙":4]
+    let timeToBoil = ["반숙":5, "반+완숙":8, "완숙":10]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,31 +41,45 @@ class ViewController: UIViewController {
 //MARK: -Event
 extension ViewController {
     @objc func BtnTapped(_ sender: UIButton) {
+        timer.invalidate()
         progressBar.progress = 0.0
-        hardness = timeToBoil[sender]
-        print(hardness)
-        
+        mainLbl.text = "먹고 싶은 🥚 골라요"
+
+
         switch sender {
         case softBtn:
-            hardness = timeToBoil["반숙"]
+            guard let hardness = timeToBoil["반숙"] else { return }
+            totalTime = hardness
+            print(totalTime)
         case mediumBtn:
-            print("medium")
+            guard let hardness = timeToBoil["반+완숙"] else { return }
+            totalTime = hardness
         case hardBtn:
-            print("hard")
+            guard let hardness = timeToBoil["완숙"] else { return }
+            totalTime = hardness
         default:
             break
         }
         
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
         
         
     }
     
     @objc func updateTime() {
-        //let percentageTimer = timePassed / totalTime
-        //print(percentageTimer)
+        
+        if timePassed < totalTime {
+            timePassed += 1
+            let percentage = Float(timePassed) / Float(totalTime)
+            progressBar.setProgress(percentage, animated: true)
+            print(timePassed)
+        } else {
+            timer.invalidate()
+            timePassed = 0
+            mainLbl.text = "다 됐다!"
+        }
+        
     }
-
 }
 
 
