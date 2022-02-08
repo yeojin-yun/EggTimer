@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C6FACEC27B1307F0098A53C /* After_the_Soft_Rains.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0C6FACEB27B1307F0098A53C /* After_the_Soft_Rains.mp3 */; };
 		0CA0A74127AC04DB00E91E60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0A74027AC04DB00E91E60 /* AppDelegate.swift */; };
 		0CA0A74327AC04DB00E91E60 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0A74227AC04DB00E91E60 /* SceneDelegate.swift */; };
 		0CA0A74527AC04DB00E91E60 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA0A74427AC04DB00E91E60 /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C6FACEB27B1307F0098A53C /* After_the_Soft_Rains.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = After_the_Soft_Rains.mp3; sourceTree = "<group>"; };
 		0CA0A73D27AC04DB00E91E60 /* EggTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EggTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CA0A74027AC04DB00E91E60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0CA0A74227AC04DB00E91E60 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				0CA0A74927AC04DC00E91E60 /* Assets.xcassets */,
 				0CA0A74B27AC04DC00E91E60 /* LaunchScreen.storyboard */,
 				0CA0A74E27AC04DC00E91E60 /* Info.plist */,
+				0C6FACEB27B1307F0098A53C /* After_the_Soft_Rains.mp3 */,
 			);
 			path = EggTimer;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				0CA0A74D27AC04DC00E91E60 /* LaunchScreen.storyboard in Resources */,
 				0CA0A74A27AC04DC00E91E60 /* Assets.xcassets in Resources */,
 				0CA0A74827AC04DB00E91E60 /* Main.storyboard in Resources */,
+				0C6FACEC27B1307F0098A53C /* After_the_Soft_Rains.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

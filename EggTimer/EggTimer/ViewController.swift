@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
-
+    
     let mainLbl = UILabel()
     let background = UIImageView()
     
@@ -30,27 +31,29 @@ class ViewController: UIViewController {
     var hardness = 0
     let timeToBoil = ["반숙":5, "반+완숙":8, "완숙":10]
     
+    var player: AVAudioPlayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
     }
-
-
+    
+    
 }
 
 //MARK: -Event
 extension ViewController {
     @objc func BtnTapped(_ sender: UIButton) {
+        player?.stop()
         timer.invalidate()
         progressBar.progress = 0.0
-        mainLbl.text = "먹고 싶은 🥚 골라요"
-
-
+        mainLbl.text = "달걀🥚삶기"
+        
+        
         switch sender {
         case softBtn:
             guard let hardness = timeToBoil["반숙"] else { return }
             totalTime = hardness
-            print(totalTime)
         case mediumBtn:
             guard let hardness = timeToBoil["반+완숙"] else { return }
             totalTime = hardness
@@ -76,9 +79,31 @@ extension ViewController {
         } else {
             timer.invalidate()
             timePassed = 0
+            playSound()
             mainLbl.text = "다 됐다!"
         }
+    }
+    
+    @objc func playSound() {
+        guard let url = Bundle.main.url(forResource: "After_the_Soft_Rains", withExtension: "mp3") else { return }
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            /* The following line is required for the player to work on iOS 11. Change the file type accordingly*/
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+            
+            /* iOS 10 and earlier require the following line:
+             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3) */
+            
+            guard let player = player else { return }
+            
+            player.play()
+            
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -92,7 +117,7 @@ extension ViewController {
     }
     
     final private func setAttributes() {
-        mainLbl.text = "먹고 싶은 🥚 골라요"
+        mainLbl.text = "달걀🥚삶기"
         mainLbl.textAlignment = .center
         mainLbl.font = UIFont.boldSystemFont(ofSize: 40)
         mainLbl.textColor = pointColor2
@@ -146,8 +171,8 @@ extension ViewController {
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         stackView.spacing = 20
-
-
+        
+        
         [background, mainLbl, stackView, progressBar].forEach {
             view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -163,16 +188,16 @@ extension ViewController {
             background.topAnchor.constraint(equalTo: view.topAnchor),
             background.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             background.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
+            
             
             mediumLbl.heightAnchor.constraint(equalTo: softLbl.heightAnchor),
             hardLbl.heightAnchor.constraint(equalTo: softLbl.heightAnchor),
-
+            
             
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 240),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -300),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -350),
             
             
             mainLbl.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
