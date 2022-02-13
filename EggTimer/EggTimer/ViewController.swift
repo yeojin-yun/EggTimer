@@ -22,15 +22,14 @@ class ViewController: UIViewController {
     
     let progressBar = UIProgressView()
     
-    let pointColor = UIColor(red: 81.0 / 255.0, green: 215.0 / 255.0, blue: 202.0 / 255.0, alpha: 1.0)
-    let pointColor2 = UIColor(red: 95.0 / 255.0, green: 87.0 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
     
     var timer = Timer()
     var totalTime = 0
     var timePassed = 0
-    var hardness = 0
     let timeToBoil = ["반숙":5, "반+완숙":8, "완숙":10]
     
+    let pointColor = UIColor(red: 81.0 / 255.0, green: 215.0 / 255.0, blue: 202.0 / 255.0, alpha: 1.0)
+    let pointColor2 = UIColor(red: 95.0 / 255.0, green: 87.0 / 255.0, blue: 215.0 / 255.0, alpha: 1.0)
     var player: AVAudioPlayer?
     
     override func viewDidLoad() {
@@ -44,7 +43,7 @@ class ViewController: UIViewController {
 //MARK: -Event
 extension ViewController {
     @objc func BtnTapped(_ sender: UIButton) {
-        player?.stop()
+        //player?.stop()
         timer.invalidate()
         progressBar.progress = 0.0
         mainLbl.text = "달걀🥚삶기"
@@ -79,7 +78,7 @@ extension ViewController {
         } else {
             timer.invalidate()
             timePassed = 0
-            playSound()
+            //playSound()
             mainLbl.text = "다 됐다!"
         }
     }
